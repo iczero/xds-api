@@ -1,8 +1,10 @@
 #![allow(clippy::doc_lazy_continuation)]
 #![doc = include_str!("../README.md")]
 
+#[cfg(not(feature = "generate_only"))]
 mod any;
 
+#[cfg_attr(feature = "generate_only", path = "generated_stub.rs")]
 #[allow(clippy::all, clippy::pedantic, clippy::nursery)]
 mod generated;
 
@@ -10,8 +12,10 @@ pub mod pb {
     pub use crate::generated::*;
 }
 
+#[cfg(not(feature = "generate_only"))]
 pub use any::WellKnownTypes;
 
+#[cfg(not(feature = "generate_only"))]
 mod value;
 
 /// A serialized file descriptor set containing the entirety of the XDS API.
